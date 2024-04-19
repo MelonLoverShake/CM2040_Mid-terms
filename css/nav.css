@@ -1,0 +1,264 @@
+.promo-bar{
+    text-shadow: 1px 1px 1px rgba(0,0,0,.004);
+    line-height: 1.5em;
+    cursor: auto;
+    box-sizing: border-box;
+    font-family: var(--font--accent--family);
+    font-weight: var(--font--accent--weight);
+    font-style: var(--font--accent--style);
+    letter-spacing: 1px;
+    font-size: 13px;
+    min-height: 33px;
+    width: 100%;
+    transition: .3s;
+    padding: 7px 10px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    text-transform: none;
+    color: var(--color--alternative);
+    background-color: rgb(247, 247, 247);
+}
+
+.link
+{
+    text-shadow: 1px 1px 1px rgba(0,0,0,.004);
+    line-height: 1.5em;
+    font-family: var(--font--accent--family);
+    font-weight: var(--font--accent--weight);
+    font-style: var(--font--accent--style);
+    letter-spacing: 1px;
+    font-size: 13px;
+    text-align: center;
+    text-transform: none;
+    box-sizing: border-box;
+    text-decoration: none;
+    background-color: transparent;
+    transition: color .2s ease;
+    color: var(--color--alternative);
+}
+
+.text
+{
+        -webkit-text-size-adjust: 100%;
+    visibility: inherit;
+    --font--section-heading--size: 20px;
+    --font--block-heading--size: 16px;
+    --font--heading--uppercase: normal;
+    --font--paragraph--size: 14px;
+    --font--heading--family: Futura, sans-serif;
+    --font--heading--weight: 400;
+    --font--heading--normal-weight: 400;
+    --font--heading--style: normal;
+    --font--accent--family: Futura, sans-serif;
+    --font--accent--weight: 400;
+    --font--accent--style: normal;
+    --font--paragraph--family: Futura, sans-serif;
+    --font--paragraph--weight: 400;
+    --font--paragraph--style: normal;
+    --font--bolder-paragraph--weight: 700;
+    --image--loading-animation: url('//www.ginleestudio.com/cdn/shop/t/17/assets/AjaxLoader.gif?v=66431031005733996371611037752');
+    --image--grabbing-icon: url('//www.ginleestudio.com/cdn/shop/t/17/assets/grabbing.png?v=162995541551579154171611037755');
+    --image--popup: url('//www.ginleestudio.com/cdn/shop/files/GINLEE7858_362a022f-0e1b-4252-bc7a-fe71e48a3b61_1200x.jpg?v=1706273686');
+    --color--accent: #f2efeb;
+    --color-text: #212121;
+    --color-page-bg: #ffffff;
+    --color-panel-bg: #ffffff;
+    --color-border: #ebebeb;
+    --color-error: #f66767;
+    --color-button: #ffffff;
+    --color-button-bg: #cacaca;
+    --color--body--light: #6e6e6e;
+    --color--alternative: #000000;
+    --color-header: #ffffff;
+    --color-header-bg: #c0c0c0;
+    --color-menubar: #ffffff;
+    --color-cart: #ffffff;
+    --color-footer: #fefefe;
+    --color-footer-bg: #c0c0c0;
+    --color-slider-caption: #272727;
+    --color-slider-caption-bg: #ffffff;
+    --color-slider-button: #f7f7f7;
+    --color-slider-button-bg: #313131;
+    --color-slider-button-hover-bg: #444444;
+    --color-slider-nav: #444444;
+    --color-product-slider-bg: #ffffff;
+    --color-featured-promo-bg: #f7f7f7;
+    --color-social-feed-bg: #ffffff;
+    --color-grid-sale: #ffffff;
+    --color-grid-sale-bg: #313131;
+    --color-grid-sold-out: #ffffff;
+    --color-grid-sold-out-bg: #cccccc;
+    --color-tabs-accordions: #ebebeb;
+    --swym-remind-cta-bg-color: #00a65a;
+    --swym-remind-cta-text-color: white;
+    --swym-remind-cta-bg-color-v2: #000000;
+    --swym-remind-cta-text-color-v2: white;
+    --swym-subscribe-success-bg-color: #AEE9D1;
+    --swym-subscribe-success-text-color: #202223;
+    --swym-recently-viewed-pointer-pos: 92%;
+    --thumb-width: 15;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.004);
+    line-height: 1.5em;
+    font-family: var(--font--accent--family);
+    font-weight: var(--font--accent--weight);
+    font-style: var(--font--accent--style);
+    letter-spacing: 1px;
+    font-size: 13px;
+    text-align: center;
+    text-transform: none;
+    color: var(--color--alternative);
+    box-sizing: border-box;
+    padding: 3px 28px 0;
+    display: block;
+}
+
+.close
+{
+        -webkit-text-size-adjust: 100%;
+    visibility: inherit;
+    --font--section-heading--size: 20px;
+    --font--block-heading--size: 16px;
+    --font--heading--uppercase: normal;
+    --font--paragraph--size: 14px;
+    --font--heading--family: Futura, sans-serif;
+    --font--heading--weight: 400;
+    --font--heading--normal-weight: 400;
+    --font--heading--style: normal;
+    --font--accent--family: Futura, sans-serif;
+    --font--accent--weight: 400;
+    --font--accent--style: normal;
+    --font--paragraph--family: Futura, sans-serif;
+    --font--paragraph--weight: 400;
+    --font--paragraph--style: normal;
+    --font--bolder-paragraph--weight: 700;
+    --image--loading-animation: url('//www.ginleestudio.com/cdn/shop/t/17/assets/AjaxLoader.gif?v=66431031005733996371611037752');
+    --image--grabbing-icon: url('//www.ginleestudio.com/cdn/shop/t/17/assets/grabbing.png?v=162995541551579154171611037755');
+    --image--popup: url('//www.ginleestudio.com/cdn/shop/files/GINLEE7858_362a022f-0e1b-4252-bc7a-fe71e48a3b61_1200x.jpg?v=1706273686');
+    --color--accent: #f2efeb;
+    --color-text: #212121;
+    --color-page-bg: #ffffff;
+    --color-panel-bg: #ffffff;
+    --color-border: #ebebeb;
+    --color-error: #f66767;
+    --color-button: #ffffff;
+    --color-button-bg: #cacaca;
+    --color--body--light: #6e6e6e;
+    --color--alternative: #000000;
+    --color-header: #ffffff;
+    --color-header-bg: #c0c0c0;
+    --color-menubar: #ffffff;
+    --color-cart: #ffffff;
+    --color-footer: #fefefe;
+    --color-footer-bg: #c0c0c0;
+    --color-slider-caption: #272727;
+    --color-slider-caption-bg: #ffffff;
+    --color-slider-button: #f7f7f7;
+    --color-slider-button-bg: #313131;
+    --color-slider-button-hover-bg: #444444;
+    --color-slider-nav: #444444;
+    --color-product-slider-bg: #ffffff;
+    --color-featured-promo-bg: #f7f7f7;
+    --color-social-feed-bg: #ffffff;
+    --color-grid-sale: #ffffff;
+    --color-grid-sale-bg: #313131;
+    --color-grid-sold-out: #ffffff;
+    --color-grid-sold-out-bg: #cccccc;
+    --color-tabs-accordions: #ebebeb;
+    --swym-remind-cta-bg-color: #00a65a;
+    --swym-remind-cta-text-color: white;
+    --swym-remind-cta-bg-color-v2: #000000;
+    --swym-remind-cta-text-color-v2: white;
+    --swym-subscribe-success-bg-color: #AEE9D1;
+    --swym-subscribe-success-text-color: #202223;
+    --swym-recently-viewed-pointer-pos: 92%;
+    --thumb-width: 15;
+    -webkit-font-smoothing: antialiased;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.004);
+    line-height: 1.5em;
+    font-family: var(--font--accent--family);
+    font-weight: var(--font--accent--weight);
+    font-style: var(--font--accent--style);
+    letter-spacing: 1px;
+    font-size: 13px;
+    text-align: center;
+    text-transform: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    border: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color--alternative);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.navbar {
+  background-color: #c65b74;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar a {
+  color: whitesmoke;
+  text-decoration: none;
+  font-size: 18px;
+  margin: 0 10px;
+  padding: 10px;
+  transition: all 0.3s ease;
+}
+
+.navbar a:hover {
+  background-color: pink;
+}
+
+.navbar a.active {
+  background-color: #333;
+  color: #fff;
+}
+
+.search-container {
+  position: absolute;
+  top: 11.5%;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 20%;
+  cursor: pointer;
+}
+
+.search-container img {
+  width: 20px;
+  height: 20px;
+  fill: white;
+}
+
+.search-container:hover img {
+  fill: black;
+}
+
+:root {
+  cursor: url("scripts/cute-kuromi-and-my-melody-cursor.png"), default;
+}
+
+a:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  cursor: url('scripts/cute-kuromi-and-my-melody-pointer.png'), pointer;
+}
