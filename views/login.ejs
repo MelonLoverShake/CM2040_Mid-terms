@@ -1,0 +1,65 @@
+<html>
+
+<head>
+
+<link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+<form>
+<section class="login-page">
+            <div class="section-header">
+                <h2>Login to Cute Blog Here!</h2>
+                <p>This is where your Blogging world starts!</p>
+            </div>
+            <div class="section-body">
+                <div class="image-container">
+                    <img src="assets/Login-Mascot.png" class="Mascot" alt="Image" style="padding: 10px;">
+                </div>
+                <div class="login-recovery"><strong>Username</strong></div><input class="textbox" type="text" name="name" value="" id="login" size="30" placeholder = "Username here">
+                <div class="login-recovery"><strong>Password</strong></div><input class="textbox" type="password" name="pass" size="30" placeholder = "Password here (e.g.password123)" id="password">
+                <button id="togglePW" class="button-secondary" type="button" style="cursor:pointer;"onclick="togglePassword();"><img src="assets/eye.svg" alt="Eye Icon" id="eyeIcon"></button>
+                <br>
+                <div class="alignleft">
+                    <input type="submit" class="button" name="login" id="login-button" value="Login to your account">
+               <p>New to CuteBlog? Register <a href="/views/register.ejs" style="text-decoration: none; color: #ff6347;">here</a>!</p>
+                </div>
+               <label class="switch">
+               <input type="checkbox" id="slider" onclick="toggleSlider()">
+               <span class="slider round"></span>
+               </label>
+               <div class="light-mode-btn" id="lightModeBtn">Light Mode</div>
+            </div>
+
+        </section>
+</form>
+  <script>
+    function togglePassword() {
+      var eyeIcon = document.getElementById('eyeIcon');
+      const passwordInput = document.getElementById("password");
+        
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.src = "assets/eye.svg";
+      } else {
+        passwordInput.type = "password";
+        eyeIcon.src = "assets/eye-close.svg";
+      }
+    }
+    var slider = document.getElementById("slider");
+        var body = document.getElementsByTagName("body")[0];
+
+        // Add an event listener to the slider
+        slider.addEventListener("click", function() {
+            // If the slider is on, change the background color of the body to grey
+            if (slider.checked) {
+                body.style.backgroundColor = "grey";
+            } else {
+                body.style.backgroundColor = "lightpink"; // Change it back to lightpink when the slider is off
+            }
+        });
+  </script>
+</body>
+<footer>
+  <%- include('./partials/footer'); %>   
+</footer>
+</html>
