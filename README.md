@@ -1,2 +1,29 @@
-# DNW_Project1
-This is the resource files for the UOL DNW Module Project 1. 
+===================================================================================
+**Basic Libraries required in my application**
+1. ejs
+2. express
+3. sqlite3
+===================================================================================
+**Additional Libraries required in my application**
+1. bcrypt
+2. compression
+3. express-rate-limit
+4. express-sanitizer
+5. express-session
+6. express-validator
+7. helmet
+====================================================================================
+**Important things to take attention**
+My application has an authorization feature securing the author endpoints.
+
+There's only one possible username that able to access the author endpoints.
+
+Upon first login, register an account with the username **Ruby14**. 
+======================================================================================
+My application can be run with  ```npm install```, ```npm run build-db```, and ```npm run start``` . 
+======================================================================================
+Name: Tan Yee Chong 
+Module: CM2040
+Student Number: 230668566
+Submission Date: 8 July 2024
+======================================================================================
