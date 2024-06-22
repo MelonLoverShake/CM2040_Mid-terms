@@ -1,0 +1,210 @@
+/* General Reset and Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+/* Post Container */
+.post-container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+/* Post Title */
+.post-title {
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Post Subtitle */
+.post-subtitle {
+  font-size: 1.5em;
+  color: #666;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Post Content */
+.post-content {
+  font-size: 1.2em;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  color: #444;
+}
+
+/* Post Stats */
+.post-stats {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.post-stats p {
+  font-size: 1.2em;
+  color: #666;
+}
+
+/* Like and Dislike Forms */
+form {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+form button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: #0056b3;
+}
+
+/* Comments Container */
+.comments-container {
+  max-width: 800px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.comments-container h2 {
+  margin-bottom: 20px;
+  color: #333;
+  text-align: center;
+}
+
+.comments-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.comment-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.comment-item:last-child {
+  border-bottom: none;
+}
+
+.comment-date {
+  font-size: 0.9em;
+  color: #999;
+}
+
+.comment-text {
+  font-size: 1.1em;
+  color: #444;
+  margin-bottom: 10px;
+}
+
+/* Comment Form */
+.comment-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.comment-form input[type="text"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  font-size: 1em;
+}
+
+.comment-form button {
+  align-self: flex-end;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.comment-form button:hover {
+  background-color: #218838;
+}
+
+/* Return Button */
+.return {
+  display: block;
+  text-align: center;
+  margin: 20px auto;
+  background-color: #17a2b8;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.return a {
+  color: white;
+  text-decoration: none;
+}
+
+.return:hover {
+  background-color: #138496;
+}
+
+.return a:hover {
+  color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .post-container, .comments-container, .comment-form {
+    margin: 20px;
+    padding: 15px;
+  }
+
+  .post-title {
+    font-size: 2em;
+  }
+
+  .post-subtitle {
+    font-size: 1.3em;
+  }
+
+  .post-content {
+    font-size: 1em;
+  }
+
+  .post-stats p {
+    font-size: 1em;
+  }
+
+  form button, .comment-form button, .return {
+    font-size: 0.9em;
+    padding: 8px 15px;
+  }
+
+  .comment-form input[type="text"] {
+    font-size: 0.9em;
+  }
+}

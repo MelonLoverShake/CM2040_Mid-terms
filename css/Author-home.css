@@ -1,0 +1,145 @@
+/* Author-home.css */
+
+.author-page {
+  padding: 20px;
+}
+
+.published-articles,
+.draft-articles {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  background-color: whitesmoke;
+}
+
+.published-articles th,
+.draft-articles th {
+  background-color: rgba(242, 242, 242, 0.2);
+  padding: 10px;
+  text-align: left;
+}
+
+.published-articles td,
+.draft-articles td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.published-articles .like,
+.draft-articles .like,
+.published-articles .dislike,
+.draft-articles .dislike,
+.published-articles .View-post,
+.draft-articles .View-post,
+.published-articles .Edit-post,
+.draft-articles .Edit-post,
+.published-articles .Delete-post,
+.draft-articles .Delete-post,
+.published-articles .Publish-post,
+.draft-articles .Publish-post {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  margin-right: 5px;
+}
+
+.published-articles .like img,
+.draft-articles .like img,
+.published-articles .dislike img,
+.draft-articles .dislike img,
+.published-articles .Edit-post img,
+.draft-articles .Edit-post img {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.no-posts {
+  text-align: center;
+  font-style: italic;
+  color: #999;
+}
+
+.header-buttons {
+  background-color: #64c4a1; /* Soft green color */
+  border: none;
+  color: white;
+  padding: 14px 28px; /* Increased padding */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px; /* Increased font size */
+  margin: 6px 4px; /* Increased spacing */
+  cursor: pointer;
+  border-radius: 20px; /* Rounded corners */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); /* Add a subtle drop shadow */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.header-buttons a {
+  color: white;
+  text-decoration: none;
+}
+
+.header-buttons:hover {
+  background-color: #46b38c; /* Slightly darker green on hover */
+}
+
+.dust img
+{
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+body {
+  background-image: url(/assets/background.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+h2
+{
+  color:white;
+}
+
+.subtitle-settings
+{
+  color:black;
+}
+
+.links
+{
+  text-decoration: none;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  display: flex;
+  list-style: none;
+  padding: 10px 0;
+  background-color: #f1f1f1;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.breadcrumb li {
+  padding-left: 10px;
+  margin-right: 10px;
+  color: #007bff;
+}
+
+.breadcrumb li::after {
+  content: "/";
+  margin-left: 10px;
+  color: #6c757d;
+}
+
+.breadcrumb li:last-child {
+  color: #6c757d;
+}
+
+.breadcrumb li:last-child::after {
+  content: "";
+}

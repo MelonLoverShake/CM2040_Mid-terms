@@ -1,0 +1,251 @@
+.mh-wrapper
+{
+    word-wrap: break-word;
+    cursor: auto;
+    margin: 0;
+    border: 0;
+    font: inherit;
+    display: block;
+    background: none;
+    padding: 0px;
+    color: #fff;
+}
+
+.mh-content
+{
+    word-wrap: break-word;
+    cursor: auto;
+    color: #fff;
+    font: inherit;
+    vertical-align: baseline;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.33);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.7px);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    padding: 25px;
+    float: none;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.post
+{
+    word-wrap: break-word;
+    cursor: auto;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    display: block;
+}
+
+.entry-header
+{
+    word-wrap: break-word;
+    cursor: auto;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    display: block;
+    margin-bottom: 1.25rem;
+}
+
+.entry-title
+{
+    word-wrap: break-word;
+    cursor: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    font-weight: 700;
+    font-family: "Viking", "Open Sans", Helvetica, sans-serif;
+    text-shadow: 3px 3px 10px black;
+    line-height: 1.5;
+    color: #fff!important;
+    font-size: 1.5rem;
+}
+
+.entry-meta
+{
+    word-wrap: break-word;
+    cursor: auto;
+    margin: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    font-size: 0.8125rem;
+    margin-top: 0.625rem;
+    border-top: 1px dotted #ebebeb;
+    border-bottom: 1px dotted #ebebeb;
+    padding: 5px 0;
+    color: #fff;
+}
+
+.entry-meta-date
+{
+    word-wrap: break-word;
+    cursor: auto;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    margin-right: 10px;
+}
+
+.entry-content
+{
+    word-wrap: break-word;
+    cursor: auto;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    counter-reset: footnotes;
+    display: block;
+}
+
+.entry-thumbnail {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+    border: 2px white;
+}
+
+.entry-thumbnail img {
+    max-width: 70%;
+    height: auto;
+    border: 2px white;
+}
+
+p{
+    word-wrap: break-word;
+    cursor: auto;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font: inherit;
+    vertical-align: baseline;
+    margin-bottom: 1.25rem;
+    color: #fff;
+}
+
+body {
+    background-image: url(/assets/background.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  form {
+    word-wrap: break-word;
+    cursor: auto;
+    color: #fff;
+    margin: 0;
+    padding: 25px;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    font: inherit;
+    vertical-align: baseline;
+    background: rgba(255, 255, 255, 0.33);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5.7px);
+    }
+    
+    form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    text-shadow: 3px 3px 10px black;
+    }
+    
+    form input, form textarea {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #333;
+    margin-bottom: 1rem;
+    }
+    
+    form button {
+    display: block;
+    width: 100%;
+    padding: 0.5rem;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    }
+    
+    form button:hover {
+    background-color: #0056b3;
+    }
+
+    .Delete-Account {
+        background-color: #ff0000; /* Red color */
+        border: none;
+        color: white;
+        padding: 8px 16px; /* Smaller padding */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 14px; /* Smaller font size */
+        margin: 4px 2px; /* Smaller margin */
+        cursor: pointer;
+        border-radius: 4px; /* Slightly rounded corners */
+      }
+      
+      .Delete-Account a {
+        color: white;
+        text-decoration: none;
+      }
+
+      .warning {
+        font-size: 14px; /* Adjust the font size as needed */
+        font-weight: bold; /* Make the text bold */
+        color: #ff0000; /* Set the text color to red */
+        background-color: #f8f8f8; /* Set a light background color */
+        padding: 10px 15px; /* Add some padding around the text */
+        border: 1px solid #e0e0e0; /* Add a light border */
+        border-radius: 4px; /* Add some rounded corners */
+        margin-top: 10px; /* Add some space above the message */
+      }
+
+      .return {
+        display: inline-block;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .return:hover {
+        background-color: #0056b3;
+      }
+      
+      .return a {
+        color: #fff;
+        text-decoration: none;
+      }
