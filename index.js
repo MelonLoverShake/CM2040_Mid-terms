@@ -24,13 +24,17 @@ const ApplicationLimiter = rateLimit({
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: ['self','localhost'],
-      scriptSrc: ['self', 'localhost']
+      defaultSrc: ['self', 'localhost'],
+      scriptSrc: ["'self'", "'localhost'", "'unsafe-inline'",'https://stackpath.bootstrapcdn.com'],
     },
   })
 );
 
+app.use(helmet.frameguard({
+  action: 'deny' 
+}));
 
+app.disable('x-powered-by');
 // X-XSS-Protection
 app.use(helmet.xssFilter());
 
@@ -50,7 +54,7 @@ else
 
 
 
-app.disable('x-powered-by');
+
 
 // configure body parser to be able to receive the request body
 const bodyParser = require ("body-parser");
