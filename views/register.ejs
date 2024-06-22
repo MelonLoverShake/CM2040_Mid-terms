@@ -1,32 +1,32 @@
 <html>
 <head>
-<link rel="stylesheet" href="../css/register.css"> 
-<%- include('./partials/header'); %>   
+<link rel="stylesheet" href="../css/register.css">
+<%- include('./partials/metadata'); %>   
 </head>
 <body>
 <section class="login-page">
     <div class="section-header">
-        <h2>Account Registration</h2>
+        <h2 class="header-title">Account Registration</h2>
     </div>
+    <br>
     <div class="section-body">
         <div id="page-register">
             <div id="part-pick-username">
-                <form method="post" id="username-form" action="/register/">
+                <form method="post" id="username-form" action="/register-process">
                     <input type="hidden" name="send" value="send">
 
                     <ol id="errors" class="alignleft error hidden"></ol>
                     <div class="p10b">
-                        <div class="inline alignright" style="width:170px"><strong>E-mail Address:</strong></div> <input type="text" class="textbox" style="width:300px" name="email" id="email" value="" maxlength="150" autocomplete="off" fdprocessedid="jc7hf">
+                        <div class="inline alignright" style="width:170px"><strong>Username:</strong></div> <input type="text" class="textbox" style="width:300px" name="username" id="Username" value="" maxlength="150" autocomplete="off" fdprocessedid="co5bqp" required>
                     </div>
+                    <% if (typeof usernameError !== 'undefined') { %>
+                      <p class="error-message" id="username-error"><%= usernameError %></p>
+                  <% } %>
                     <div class="p10b">
-                        <div class="inline alignright" style="width:170px"><strong>Username:</strong></div> <input type="text" class="textbox" style="width:300px" name="email2" id="Username" value="" maxlength="150" autocomplete="off" fdprocessedid="co5bqp">
+                      <div class="inline alignright" style="width:170px"><strong>Email:</strong></div> <input type="text" class="textbox" style="width:300px" name="email" id="Username" value="" maxlength="150" autocomplete="off" fdprocessedid="co5bqp" required>
                     </div>
                     <div class="p10b">
                      <div class="inline alignright" style="width:170px"><strong>Password:</strong></div> <input type="password" class="textbox" style="width:300px" name="password" id="password" value="" maxlength="150" autocomplete="off" fdprocessedid="jc7hf">
-                    <button id="togglePW" class="button-secondary" type="button" style="cursor:pointer;"onclick="togglePassword();">Show Password</button>
-                    <div class="p10b">
-                        <div class="inline alignright" style="width:170px"><strong>Birthdate:</strong></div> <input type="date" class="textbox" style="width:300px" name="Bday" id="Birthdate" value="" maxlength="150" autocomplete="off" fdprocessedid="co5bqp">
-                    </div>
                     <br>
                     <p class="error-message" style="margin-bottom: 10px;"></p>
                     <br>
@@ -35,7 +35,7 @@
                     <p class="error-message" id="Email-Error"></p>
                     </div>
                     <br>
-                    <p>Already have an account? Login <a href = "header.html" style="text-decoration: none; color: #ff6347;">here!</a>
+                    <p class="login-prompt"><bold>Already have an account? Login</bold> <a href = "/login" style="text-decoration: none; color: #ff6347;">here!</a>
                     <div class="alignright">
                         <input class="button" type="submit" name="proceed" id="proceed" value="Proceed with account creation.">
                     </div>
@@ -63,7 +63,7 @@
   });
     
   UsernameInput.addEventListener("input", () => {
-    if (UsernameInput.value.length < 8 && UsernameInput.value.length > 0 ) {
+    if (UsernameInput.value.length < 5 && UsernameInput.value.length > 0 ) {
       errorMessage2.textContent = "Username must be at least 5 characters.";
       submitButton.disabled = true;
     } else {
@@ -72,17 +72,8 @@
     }
   });
     
-function togglePassword() {
-    if (passwordInput.type === "password") {
-      passwordInput.type = "text";
-      togglePW.textContent = "Hide Password";
-    } else {
-      passwordInput.type = "password";
-      togglePW.textContent = "Show Password";
-    }
-  }
     
-document.getElementById('Birthdate').max = new Date(new Date().setDate(new Date().getDate() - 1)).toISOString().split('T')[0];
+
 
     </script>
     </body>

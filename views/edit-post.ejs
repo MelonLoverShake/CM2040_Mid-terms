@@ -1,0 +1,26 @@
+<!-- Add your desired HTML structure and EJS tags here -->
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="/css/edit-post.css" media="screen"/>
+</head>
+<h1>Edit Blog Post</h1>
+<form action="/author/update-post" method="POST">
+  <label for ="CreatedAt">Post Created at:</label>
+  <input type="text" name="created-at-time" value="<%= post.createdAt%>" readonly>
+  <label for ="CreatedAt">Post Modifed at:</label>
+  <input type="text" name="created-at-time" value="<%= post.ModifiedAt%>" readonly>
+  <label for ="PostId">PostId</label>
+  <input type="text" name="postId" value="<%= post.id %>" readonly>
+  <label for="title">Title</label>
+  <input type="text" name="title" value="<%= post.title %>">
+  
+  <label for="subtitle">Subtitle</label>
+  <input type="text" name="subtitle" value="<%= post.subtitle %>">
+  
+  <label for="content">Content</label>
+  <textarea name="content"><%= post.content %></textarea>
+
+  <button class="back-button"><a href="/author/author-home">Back to Author Home Page</a></button>
+  <button type="submit">Save Changes</button>
+</form>
+</html>

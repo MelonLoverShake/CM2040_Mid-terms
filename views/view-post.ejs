@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Post</title>
+  <link rel="stylesheet" type="text/css" href="/css/view-post.css">
+  <%- include('./partials/metadata'); %>     
+</head>
+<body>
+  <div class="post-container">
+    <h4 class="post-id">View Post <%= post.id %></h4>
+    <h1 class="post-title"><%= post.title %></h1>
+    <h3 class="post-subtitle"><%= post.subtitle %></h3>
+    <p class="post-content"><%= post.content %></p>
+    <div class="post-stats">
+      <p class="post-dislikes">Views: <%= post.Views%></p>
+      <p class="post-likes">Likes: <%= post.likes %></p>
+      <p class="post-dislikes">Dislikes: <%= post.dislikes %></p>
+    </div>
+  </div>
+
+  <form action="/like-post" method="POST">
+    <input type="hidden" name="postLikeId" value="<%=post.id%>">
+    <input type="hidden" name="userid" value="<%= user.id %>">
+    <button type="submit">Like</button>
+  </form>
+  <form action="/dislike-post" method="POST">
+    <input type="hidden" name="postdisLikeId" value="<%=post.id%>">
+    <input type="hidden" name="userrid" value="<%= user.id %>">
+    <button type="submit">Dislike</button>
+  </form>
+
+  <div class="comments-container">
+    <h2>Comments</h2>
+    <% if (comments.length === 0) { %>
+      <p>No comments for this post to display</p>
+    <% } else { %>
+      <ul class="comments-list">
+        <% comments.forEach(function(comment) { %>
+          <li class="comment-item">
+            <p class="comment-date">Commented by <%= comment.comment_user%> </p>
+            <p class="comment-text"><%= comment.text %></p>
+            <p class="comment-date"> Commented on <%= comment.createdAt %></p>
+          </li>
+        <% }) %>
+      </ul>
+    <% } %>
+  </div>
+
+  <form action="/add-comments" method="POST" class="comment-form">
+    <label for="commenter">Comment As:</label>
+    <input type="text" name="commenter" placeholder="<%=username%>">
+    <label for="comment">Comment:</label>
+    <input type="text" name="comment" placeholder="Write a comment......">
+    <input type="hidden" name="pstid" value="<%=post.id%>">
+    <button type="submit">Submit</button>
+  </form>
+<br>
+<br>
+<button class="return"><a href="/DashBoard">Return</a></button>
+</body>
+</html>

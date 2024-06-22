@@ -1,0 +1,17 @@
+<!DOCTYPE html> 
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/confirmation.css" media="screen"/>
+    <%- include('./partials/header'); %>    
+</head>
+<body>
+  <h1>Confirmation Page</h1>
+  <div class="container"> 
+    <h2><%= messages[0] %></h2>
+    <% for (var i = 1; i<messages.length; i++){ %>
+      <p><%= messages[i] %></p>
+    <% } %>		
+  </div>
+</body>
+
+</html>

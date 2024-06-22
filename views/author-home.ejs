@@ -1,0 +1,176 @@
+<!-- views/author.ejs -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= title %></title>
+  <link rel="stylesheet" type="text/css" href="/css/Author-home.css">
+  <%- include('./partials/author-nav'); %>
+  <%- include('./partials/metadata'); %>  
+</head>
+<body>
+<nav aria-label="Breadcrumb"> 
+  <ol class="breadcrumb"> 
+    <li>
+      Author Home Page
+    </li>
+</nav>
+<div class="author-page">
+  <h1><%= settings.title %></h1>
+  <h2 class="subtitle-settings"><%= settings.subtitle%></h2>
+  <h3 class="author-heading">Author: <%= settings.author%></h3>
+  <button class="header-buttons"><a href="/author/author-settings"><strong>Settings</strong></a></button>
+  <button class="header-buttons"><a href="/author/create-post"><strong>Create new draft</strong></a></button>
+  <br>
+  <br>
+  <!-- Published Articles List -->
+  <h2><strong>Published Articles</strong></h2>
+  <table class="published-articles">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Subtitle</th>
+        <th>Content</th>
+        <th>Likes</th>
+        <th>Dislikes</th>
+        <th>View Count</th>
+        <th>Created At</th>
+        <th>Modified At</th>
+        <th>Published At</th>
+        <th>Share</th>
+        <th>Edit</th>
+        <th>History</th>
+        <th>Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (posts.length === 0 || !posts.some(post => post.status === 'published')) { %>
+        <tr>
+          <td colspan="11">No published posts to display.</td>
+        </tr>
+      <% } else { %>
+        <% posts.forEach(function(post) { %>
+          <% if (post.status === 'published') { %>
+            <tr>
+              <td><%= post.title %></td>
+              <td><%= post.subtitle %></td>
+              <td><%= post.content %></td>
+              <td>
+                <button class="like"><img src="/assets/heart.svg"><%= post.likes %></button>
+              </td>
+              <td>
+                <button class="dislike"><img src="/assets/heart-crack.svg"><%= post.dislikes %></button>
+              </td>
+              <td>
+                <%= post.Views %>
+              </td>
+              <td><%=post.createdAt%></td>
+              <td><% if (post.ModifiedAt) { %><%=post.ModifiedAt%><% } %></td>
+              <td>
+                <%= post.publishedAt%>
+              </td>
+              <td>
+                <button class="Share-Button"><input type="text" value="http://localhost:3000/view-post/<%=post.id%>"></a></button>
+              </td>
+              <td>
+                <form class="edit-post-form" method="POST" action="/author/edit-post">
+                  <input type="hidden" name="postid_for" value="<%=post.id%>">
+                  <button type="submit" class="Edit-post">
+                    <img src="/assets/edit.svg" alt="Edit">
+                  </button>
+                </form>
+              </td>
+              <td>
+                <form class="post-history-form" method="POST" action="/author/version-history">
+                <input type="hidden" name="postid_" value="<%= post.id %>">
+                <button><strong>Post History</strong></a></button>
+                </form>
+              </td>
+              <td>
+                <form method="POST" action="/author/delete-publishedpost">
+                  <input type="hidden" name="_postid" value="<%= post.id %>">
+                  <button class="Delete-post" type="submit">Delete
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <% } %>
+        <% }) %>
+      <% } %>
+    </tbody>
+  </table>
+  <!-- Draft Articles List -->
+  <h2><strong>Draft Articles</strong></h2>
+  <table class="draft-articles">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Content</th>
+        <th>Subtitle</th>
+        <th>Likes</th>
+        <th>Dislikes</th>
+        <th>Created At</th>
+        <th>Publish Post</th>
+        <th>Delete Post</th>
+        <th>View Post</th>
+        <th>Edit Post</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (posts.length === 0 || !posts.some(post => post.status === 'draft')) { %>
+        <tr>
+          <td colspan="8">No draft posts to display.</td>
+        </tr>
+      <% } else { %>
+        <% posts.forEach(function(post) { %>
+          <% if (post.status === 'draft') { %>
+            <tr>
+              <td><%= post.title %></td>
+              <td><%= post.content %></td>
+              <td><%= post.subtitle %></td>
+              <td>
+                <button class="like"><img src="/assets/heart.svg"><%= post.likes %></button>
+              </td>
+              <td>
+                <button class="dislike"><img src="/assets/heart-crack.svg"><%= post.dislikes %></button>
+              </td>
+              <td><%=post.createdAt%></td>
+              <td>
+                <form class="Publish" action="/author/publish-post/<%= post.id %>" method="POST">
+                  <button class="Publish-post">Publish</button>
+                </form>
+              </td>
+              <td>
+                <form class="delete-form" method="POST" action="/author/delete-post">
+                  <input type="hidden" name="postid" value="<%= post.id %>">
+                  <button class="Delete-post" type="submit">Delete</button>
+                </form>
+              </td>
+              <td>
+                <button class="View-post"><a href="/author/view-post/<%= post.id %>" class="links">View Post</a></button>
+              </td>
+              <td>
+                <form class="edit-post-form" method="POST" action="/author/edit-post">
+                  <input type="hidden" name="postid_for" value="<%=post.id%>">
+                  <button type="submit" class="Edit-post">
+                    <img src="/assets/edit.svg" alt="Edit">
+                  </button>
+                </form>
+              </td>
+            </tr>
+          <% } %>
+        <% }) %>
+      <% } %>
+    </tbody>
+  </table>
+  <script>
+    function showAlert() {
+      var button = document.querySelector('.Share-Button');
+      var postID = button.dataset.postid;
+      var link = "/reader/view-post/" + postID;
+      var message = '<a href="' + link + '">Share Post</a>';
+      alert(message);
+    }
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: white;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    p {
+      text-align: center;
+      color: #666;
+      margin-top: 20px;
+    }
+
+    .Revert-Version {
+  background-color: #6495ED; /* Cornflower Blue */
+  border: none;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.Revert-Version:hover {
+  background-color: #4169E1; /* Dark Blue on hover */
+}
+
+.Return {
+  background-color: #F5F5F5; /* Light gray background */
+  color: #333333; /* Dark gray text color */
+  border: none; /* No border */
+  padding: 12px 24px; /* Moderate padding */
+  text-align: center; /* Center the text */
+  text-decoration: none; /* No underline */
+  display: inline-block; /* Display as an inline block */
+  font-size: 16px; /* Medium font size */
+  font-family: 'Roboto', sans-serif; /* Use Roboto font */
+  border-radius: 4px; /* Slightly rounded corners */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle drop shadow */
+  transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+}
+
+.Return:hover {
+  background-color: #E0E0E0; /* Slightly darker gray on hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly larger drop shadow on hover */
+}
+
+.Return:active {
+  background-color: #D0D0D0; /* Even darker gray when clicked */
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); /* Smaller drop shadow when clicked */
+}
+
+.Return a
+{
+  text-decoration: none;
+  color: black;
+}
+  </style>
+</head>
+<body>
+  <h1>Post Version History</h1>
+  <p>This will only show the last version before the current version.</p>
+
+  <% if (post.PostHistory !== null && post.PostHistory !== '') { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Modifed Date</th>
+          <th>Content</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><%= new Date(post.ModifiedAt).toLocaleString() %></td>
+          <td><%= post.PostHistory %></td>
+          <td><button class="Revert-Version">Revert</button></td>
+        </tr>
+      </tbody>
+    </table>
+  <% } else { %>
+    <p>No version history available for this post.</p>
+  <% } %>
+  <br>
+  <br>
+  <button class="Return"><a href="/author/author-home">Return</a></button>
+</body>
+</html>

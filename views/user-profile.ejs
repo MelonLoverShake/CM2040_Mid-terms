@@ -1,0 +1,42 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/css/back-up.css">
+</head>
+<div class="mh-wrapper">
+    <div id="main-content" class="mh-content" role="main" itemprop="mainContentOfPage">
+        <article id="post-7407" class="post">
+            <header class="entry-header">
+                <h1 class="entry-title">User Settings</h1>
+                <p class="mh-meta entry-meta">
+                    <span class="entry-meta-date"><i class="fa fa-clock-o"></i>Date: <%= currentDate %></span>
+                </p>
+            </header>
+            <div class="entry-content mh-clearfix">
+                <figure class="entry-thumbnail">
+                    <img src="/assets/AdleyBlackBoard(Smaller).png" alt="" title="applications3_verysmall">
+                </figure>
+				<br>
+				<br>
+                <form>
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" placeholder=" <%= user.username %>">
+					<label for = "email"> Email:</label>
+					<input type="text" id="email" name="email" placeholder="<%= user.email%>">
+                    <button type="submit">Save Changes</button>
+                </form>
+            <br>
+            <br>
+            </div>
+            <div class="entry-content mh-clearfix">
+                <form method="POST" action="/common/process-delete">
+                    <p class="warning">Note that Deleting of Account is not reversible.</p>
+                    <button class="Delete-Account"><a href="/common/process-delete">Delete Account</a></button>
+                </form>
+            </div>
+            <br>
+            <br>
+            <button class="return"><a href="/author/author-home">Return</a></button>
+        </article>
+    </div>
+</div>
+</html>
