@@ -27,11 +27,20 @@ const redirectlogin = (req, res, next) => {
   }
 }
 
-router.get('/', (req, res) => {
-  // Purpose: This route is responsible for rendering the main page of the application.
+router.get('/', (req, res, next) => {
+  /**
+ * @description set the main route to redirect to the home route
+ */
+  try {
+    // Render the 'mainpage' view and send the response to the client.
+    res.render('mainpage');
+  } catch (err) {
+    // Log the error
+    console.error('Error rendering mainpage:', err);
 
-  // Render the 'mainpage' view and send the response to the client.
-  res.render('mainpage');
+    // Send a generic error response to the client
+    return res.status(500).send('An error occurred');
+  }
 });
 
 router.get('/register', function (req, res) {
@@ -98,7 +107,7 @@ function(req, res) {
         }
         else {
           // Sending confirmation message by rendering empty ejs template with array of strings
-          var message = ["Success!", "You are now registered. You may login as " + sanitizedUsername + " now.", "Your user name is: " + sanitizedUsername, "Your hashed password is: " + plainPassword];
+          var message = ["Success!", "You are now registered. You may login as " + sanitizedUsername + " now.", "Your user name is: " + sanitizedUsername, "Your hashed password is: " + hashedPassword];
           res.render('confirmation.ejs', { messages: message });
         }
       });
