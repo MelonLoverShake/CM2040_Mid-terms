@@ -112,32 +112,6 @@ body {
   text-decoration: none;
 }
 
-/* View Post Button */
-.View-post {
-  display: inline-block;
-  background-color: #00b894;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: 500;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.View-post:hover {
-  transform: translateY(-2px);
-}
-
-.View-post a {
-  color: white;
-  text-decoration: none;
-}
-
 .no-posts {
   font-size: 18px;
   text-align: center;
