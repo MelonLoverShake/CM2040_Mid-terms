@@ -11,7 +11,7 @@
 <br>
 <div class="blog-information">
   <h1>Blog title: <%=settings.title%></h1>
-  <h2>Blog Author:<%=settings.author%></h2>
+  <h2>Blog Author: <%=settings.author%></h2>
 </div>
   <div class="blog-container">
     <h2><strong>DashBoard Page</strong></h2>
@@ -24,7 +24,9 @@
         <% posts.forEach(function(post) { %>
           <% if (post.status === 'published') { %>
             <li>
-              <p class="title"><%= post.title %></p>
+              <a href="/view-post/<%=post.id%>">
+                <p class="title" style="color: black;"><%=post.title%></p>
+              </a>
               <p class="subtitle"><%= post.subtitle %></p>
               <br>
               <p class="content"><%= post.content %></p>
@@ -32,10 +34,6 @@
               <button class="dislike"><img src="/assets/heart-crack.svg"><%= post.dislikes %></button>
               <button class="dislike"><img src="/assets/eye-svgrepo-com.svg"><%= post.Views %></button>
               <p class="Time-Created">Published at <%= post.publishedAt%></p>
-              <button class="Share-Button"><a href="/view-post/<%=post.id%>">Share Post</a></button>
-              <form class="View-post" method="GET" action="/view-post/<%=post.id%>">
-                <button class="View-post">View Post</button>
-              </form>
             </li>
           <% } %>
         <% }) %>
