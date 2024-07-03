@@ -18,15 +18,6 @@ const loginLimiter = rateLimit({
   message: 'Too many login/register attempts from this IP, please try again after 15 minutes'
 });
 
-const redirectlogin = (req, res, next) => {
-  if (!req.session.username) {
-    res.redirect('/login');
-  } else {
-    console.log("The session UserId is set as: " + req.session.userId);
-    next();
-  }
-}
-
 router.get('/', (req, res, next) => {
   /**
  * @description set the main route to redirect to the home route
@@ -124,7 +115,6 @@ router.get('/login', function (req, res) {
   });
 });
 
-
 router.post('/login-process', loginLimiter, function (req, res) {
   // Purpose: This route is responsible for handling the login process.
   // It receives the user's login credentials, validates them against the database,
@@ -163,9 +153,7 @@ router.post('/login-process', loginLimiter, function (req, res) {
               req.session.userId = row.id;
               req.session.email = row.email;
               req.session.username = row.username;
-              // Sending a confirmation by rendering empty ejs template with array of strings
-              var message = ["Success!", "You are now logged in."];
-              res.render('confirmation.ejs', { messages: message });
+              res.redirect('/author/author-home');
             }
           }
         });
@@ -183,7 +171,7 @@ router.get('/about', function (req, res) {
   });
 });
 
-router.get('/DashBoard', redirectlogin, (req, res) => {
+router.get('/DashBoard', (req, res) => {
   // Purpose: This route is responsible for rendering the Dashboard page, which displays
   // a list of published blog posts and the blog settings.
 
@@ -221,7 +209,6 @@ router.get('/DashBoard', redirectlogin, (req, res) => {
     });
   });
 });
-
 router.get('/view-post/:postid', function (req, res) {
   // Purpose: This route is responsible for rendering the "View Post" page, which displays
   // the details of a specific blog post and its associated comments.
@@ -291,8 +278,11 @@ router.get('/view-post/:postid', function (req, res) {
               return res.status(404).json({ error: 'User not found' });
             }
 
+            // Update the post object with the new view count
+            post.Views = post.Views + 1;
+
             // Render the 'view-post' view and pass the following data:
-            // - post: The details of the blog post
+            // - post: The details of the blog post with the updated view count
             // - comments: The comments for the blog post
             // - commentCount: The count of comments for the blog post
             // - user: The details of the user who created the blog post

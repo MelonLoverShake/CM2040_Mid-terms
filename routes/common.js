@@ -4,6 +4,7 @@ const date_time = new Date();
 const { check, validationResult } = require('express-validator');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const Joi = require('joi');
 router.use(bodyParser.urlencoded({ extended: false }));
 router.use(session({ secret: 'secret-key', resave: false, saveUninitialized: true }));
 
@@ -75,16 +76,38 @@ router.get('/user-profile', function (req, res) {
 router.post('/user-settings', function (req, res) {
   // Purpose: This route is responsible for updating a user's settings, including their username and email.
 
-  // Inputs:
-  // - req.body.username - The new username the user wants to set.
-  // - req.body.email - The new email the user wants to set.
-  // - req.session.userId - The ID of the user whose settings are being updated.
+  // Define the validation schema
+  const schema = Joi.object({
+    username: Joi.string()
+      .min(8)
+      .max(20)
+      .required()
+      .messages({
+        'string.min': 'Username must be at least 8 characters long',
+        'string.max': 'Username must be no more than 20 characters long',
+        'any.required': 'Username is required'
+      }),
+    email: Joi.string()
+      .email({ tlds: { allow: false } })
+      .required()
+      .messages({
+        'string.email': 'Invalid email address',
+        'any.required': 'Email is required'
+      })
+  });
 
-  const { username, email, password } = req.body;
+  // Inputs:
+  const { username, email } = req.body;
   const userId = req.session.userId;
 
+  // Validate the request body using the schema
+  const { error } = schema.validate(req.body);
+  if (error) {
+    // If there is a validation error, return the first error message
+    return res.status(400).json({ error: error.details[0].message });
+  }
+
   db.run(
-    // This SQL query updates the username and email columns for the user with the specified userId in the users table.
     'UPDATE users SET username = ?, email = ? WHERE id = ?',
     [username, email, userId],
     function (err) {
@@ -94,8 +117,7 @@ router.post('/user-settings', function (req, res) {
         return res.status(500).send('Error updating user settings');
       }
 
-      // If the user's settings were updated successfully, send a success message.
-      res.send('User settings updated successfully');
+      res.redirect('/common/user-profile');
     }
   );
 });
@@ -133,5 +155,6 @@ router.post('/process-delete', function (req, res) {
     }
   );
 });
+
 
 module.exports = router;

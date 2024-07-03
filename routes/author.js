@@ -9,21 +9,30 @@ const { check, validationResult } = require('express-validator');
 
 
 function formatDateForSQLite(date) {
-  //Purpose: This function takes a JavaScript Date object and formats it into a string that can be easily inserted into an SQLite database.
-  //Inputs: A JavaScript Date object representing the date and time to be formatted.
-  //Outputs: A string in the format "YYYY-MM-DD HH:MM:SS" that can be used to insert the date and time into an SQLite database.
+  // Purpose: This function takes a JavaScript Date object and formats it into a string
+  // that can be easily inserted into an SQLite database with a time zone adjustment to GMT+8.
+  // Inputs: A JavaScript Date object representing the date and time to be formatted.
+  // Outputs: A string in the format "YYYY-MM-DD HH:MM:SS" that can be used to insert
+  // the date and time into an SQLite database.
+
   if (!(date instanceof Date)) {
       throw new Error("Invalid Date object");
   }
-  const year = date.getUTCFullYear();
-  const month = String(date.getUTCMonth() + 1).padStart(2, '0');
-  const day = String(date.getUTCDate()).padStart(2, '0');
-  const hours = String(date.getUTCHours()).padStart(2, '0');
-  const minutes = String(date.getUTCMinutes()).padStart(2, '0');
-  const seconds = String(date.getUTCSeconds()).padStart(2, '0');
+
+  // Adjust the date for GMT+8
+  const gmtPlus8 = new Date(date.getTime() + 8 * 60 * 60 * 1000);
+
+  const year = gmtPlus8.getUTCFullYear();
+  const month = String(gmtPlus8.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(gmtPlus8.getUTCDate()).padStart(2, '0');
+  const hours = String(gmtPlus8.getUTCHours()).padStart(2, '0');
+  const minutes = String(gmtPlus8.getUTCMinutes()).padStart(2, '0');
+  const seconds = String(gmtPlus8.getUTCSeconds()).padStart(2, '0');
+
   const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
   return formattedDate;
 }
+
 
 
 const requiredPerms = (req, res, next) =>
@@ -166,34 +175,48 @@ router.post('/update-settings', [
   }
 });
 
-router.get('/author-home',redirectlogin,requiredPerms, (req, res) => {
-  // Purpose: This route handler function is responsible for rendering the author's home page, which displays a list of their blog posts and associated metadata.
-  // Inputs: req (the Express request object), res (the Express response object).
-  // Outputs: The function renders the 'author-home' view, passing in the necessary data to display the author's blog posts and settings.
-
-  global.db.get('SELECT * FROM Settings', (err, settingsRow) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('Internal Server Error');
-    } else {
-      // Query the posts table and the comments table to get the comment count for each post
-      global.db.all('SELECT p.*, (SELECT COUNT(*) FROM Comments c WHERE c.postId = p.id) AS commentCount FROM Posts p', (err, postsRows) => {
+router.get('/author-home', redirectlogin, requiredPerms, async (req, res) => {
+  // Purpose: This route handler function is responsible for rendering the author-home page, which displays the blog settings and the list of posts with their comment counts.
+// Inputs: req (the Express request object), res (the Express response object).
+// Outputs: The function renders the 'author-home' view and passes data to the page such as posts.
+  try {
+    // Fetch settings from the database
+    const settingsRow = await new Promise((resolve, reject) => {
+      global.db.get('SELECT * FROM Settings', (err, row) => {
         if (err) {
-          console.error(err);
-          res.status(500).send('Internal Server Error');
+          reject(err);
         } else {
-          console.log("postsRows:", postsRows);
-          // Dynamic title
-          const dynamicTitle = 'Author Home Page | CuteBlog Blogging';
-          res.render('author-home', { 
-            settings: settingsRow, 
-            posts: postsRows, 
-            title: dynamicTitle, 
-          });
+          resolve(row);
         }
       });
-    }
-  });
+    });
+
+    // Fetch posts and their comment count from the database
+    const postsRows = await new Promise((resolve, reject) => {
+      global.db.all('SELECT p.*, (SELECT COUNT(*) FROM Comments c WHERE c.postId = p.id) AS commentCount FROM Posts p', (err, rows) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(rows);
+        }
+      });
+    });
+
+    console.log("postsRows:", postsRows);
+
+    // Dynamic title
+    const dynamicTitle = 'Author Home Page | CuteBlog Blogging';
+
+    // Render the 'author-home' view with the necessary data
+    res.render('author-home', { 
+      settings: settingsRow, 
+      posts: postsRows, 
+      title: dynamicTitle, 
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
 });
 
 router.get('/DashBoard', (req, res) => {
@@ -288,27 +311,36 @@ router.post('/delete-publishedpost', (req, res) => {
   }
 });
 
-router.post('/edit-post', (req, res) => {
-  // Purpose: This route handler function is responsible for rendering the edit-post page for a specific post.
-  // Inputs: req (the Express request object), res (the Express response object).
-  // Outputs: The function renders the 'edit-post' view and passes the post information to the view.
-  const postId = req.body.postid_for;
+router.post('/edit-post', async (req, res) => {
+// Purpose: This route handler function is responsible for rendering the edit-post page for a specific post.
+// Inputs: req (the Express request object), res (the Express response object).
+// Outputs: The function renders the 'edit-post' view and passes the post information to the view.
+  try {
+    const postId = req.body.postid_for;
 
-  db.get('SELECT * FROM Posts WHERE id = ?', [postId], (err, post) => {
-    if (err) {
-      console.error('Error retrieving post:', err.message);
-      return res.status(500).send('Error retrieving post.');
-    }
+    // Fetch the post from the database
+    const post = await new Promise((resolve, reject) => {
+      db.get('SELECT * FROM Posts WHERE id = ?', [postId], (err, row) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(row);
+        }
+      });
+    });
 
     if (!post) {
       return res.status(404).send('Post not found.');
     }
 
-    // Pass the post data to the edit post page
+    // Render the 'edit-post' view and pass the post data
     res.render('edit-post', {
       post: post
     });
-  });
+  } catch (err) {
+    console.error('Error retrieving post:', err.message);
+    res.status(500).send('Error retrieving post.');
+  }
 });
 
 router.post('/update-post', (req, res) => {
@@ -398,7 +430,6 @@ router.post('/version-history', (req, res) => {
 
   const postId = req.body.postid_;
 
-  console.log(postId);
 
   // Fetch the post information
   db.get(`SELECT * FROM posts WHERE id = ?`, [postId], (err, post) => {
