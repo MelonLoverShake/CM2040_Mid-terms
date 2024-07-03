@@ -37,7 +37,6 @@
         <th>Modified At</th>
         <th>Published At</th>
         <th>Share</th>
-        <th>Edit</th>
         <th>History</th>
         <th>Delete</th>
       </tr>
@@ -64,20 +63,17 @@
                 <%= post.Views %>
               </td>
               <td><%=post.createdAt%></td>
-              <td><% if (post.ModifiedAt) { %><%=post.ModifiedAt%><% } %></td>
+              <td><% if (post.ModifiedAt) { %>
+                <%=post.ModifiedAt%>
+              <% } else { %>
+                This post has not been modified.
+              <% } %></td>
               <td>
                 <%= post.publishedAt%>
               </td>
               <td>
-                <button class="Share-Button"><input type="text" value="http://localhost:3000/view-post/<%=post.id%>"></a></button>
-              </td>
-              <td>
-                <form class="edit-post-form" method="POST" action="/author/edit-post">
-                  <input type="hidden" name="postid_for" value="<%=post.id%>">
-                  <button type="submit" class="Edit-post">
-                    <img src="/assets/edit.svg" alt="Edit">
-                  </button>
-                </form>
+                <button class="Share-Button"><a href="http://localhost:3000/view-post/<%=post.id%>">Share</a></button>
+                <br>Copyable link: <input type="text" value="http://localhost:3000/view-post/<%=post.id%>">
               </td>
               <td>
                 <form class="post-history-form" method="POST" action="/author/version-history">
@@ -109,10 +105,10 @@
         <th>Likes</th>
         <th>Dislikes</th>
         <th>Created At</th>
+        <th>Modifed At</th>
         <th>Publish Post</th>
         <th>Delete Post</th>
-        <th>View Post</th>
-        <th>Edit Post</th>
+        <th>Edit</th>
       </tr>
     </thead>
     <tbody>
@@ -134,6 +130,11 @@
                 <button class="dislike"><img src="/assets/heart-crack.svg"><%= post.dislikes %></button>
               </td>
               <td><%=post.createdAt%></td>
+              <td><% if (post.ModifiedAt) { %>
+                <%=post.ModifiedAt%>
+              <% } else { %>
+                This post has not been modified.
+              <% } %></td>
               <td>
                 <form class="Publish" action="/author/publish-post/<%= post.id %>" method="POST">
                   <button class="Publish-post">Publish</button>
@@ -144,9 +145,6 @@
                   <input type="hidden" name="postid" value="<%= post.id %>">
                   <button class="Delete-post" type="submit">Delete</button>
                 </form>
-              </td>
-              <td>
-                <button class="View-post"><a href="/author/view-post/<%= post.id %>" class="links">View Post</a></button>
               </td>
               <td>
                 <form class="edit-post-form" method="POST" action="/author/edit-post">
