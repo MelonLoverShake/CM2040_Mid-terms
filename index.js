@@ -16,8 +16,10 @@ app.use(compression()); //greatly decrease the size of the response body and hen
 
 const ApplicationLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 8, // limit each IP to 8 requests per windowMs
-  message: 'Too many attempts from this IP, please try again after 15 minutes'
+  max: 100, 
+  message: 'Too many attempts from this IP, please try again after 15 minutes',
+  standardHeaders: true, //Return rate limit infomation in the RateLimit -* headers
+  legacyHeaders: false, // Disable the X-RateLimit-* headers
 });
 
 
@@ -52,10 +54,6 @@ else
 }
 });
 
-
-
-
-
 // configure body parser to be able to receive the request body
 const bodyParser = require ("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -87,7 +85,8 @@ app.use('/scripts/',scriptdirectory);
 app.use('/assets/', ImageDirectory);
 
 //add the Rate Limit to the application of CuteBlog
-app.use(ApplicationLimiter);
+app.use('/author', ApplicationLimiter);
+app.use('/common', ApplicationLimiter);
 
 app.use(session({
   secret: 's3Cur3',
