@@ -202,7 +202,6 @@ router.get('/DashBoard', (req, res) => {
       // - settings: The blog settings
       res.render('DashBoard', {
         title: "Dashboard | CuteBlog Blogging",
-        username: req.session.username,
         posts: posts,
         settings: settings
       });
@@ -232,7 +231,7 @@ router.get('/view-post/:postid', function (req, res) {
   const commentsQuery = 'SELECT COUNT(*) AS commentCount FROM Comments WHERE postId = ?';
   const commentQuery = 'SELECT * FROM Comments WHERE postId = ? ORDER BY createdAt DESC';
   const postQuery = 'SELECT * FROM Posts WHERE id = ?';
-  const userQuery = "SELECT * FROM Users WHERE id = ?";
+  //const userQuery = "SELECT * FROM Users WHERE id = ?";
   const updateViewCountQuery = 'UPDATE Posts SET Views = Views + 1 WHERE id = ?';
 
   // Fetch the comment count for the given post
@@ -266,8 +265,13 @@ router.get('/view-post/:postid', function (req, res) {
             console.error(err);
             return res.status(500).json({ error: 'Internal server error' });
           }
+          else
+          {
+            // Update the post object with the new view count
+            post.Views = post.Views + 1;
+          }
 
-          // Fetch the details of the user who created the blog post
+         /* // Fetch the details of the user who created the blog post
           db.get(userQuery, [userId], (err, user) => {
             if (err) {
               console.error(err);
@@ -278,8 +282,9 @@ router.get('/view-post/:postid', function (req, res) {
               return res.status(404).json({ error: 'User not found' });
             }
 
-            // Update the post object with the new view count
-            post.Views = post.Views + 1;
+          */
+
+            
 
             // Render the 'view-post' view and pass the following data:
             // - post: The details of the blog post with the updated view count
@@ -287,13 +292,12 @@ router.get('/view-post/:postid', function (req, res) {
             // - commentCount: The count of comments for the blog post
             // - user: The details of the user who created the blog post
             // - username: The username of the currently logged-in user
-            res.render('view-post', { post: post, comments: comments, commentCount: commentCount.commentCount, user: user, username: username });
+            res.render('view-post', { post: post, comments: comments, commentCount: commentCount.commentCount, username: username });
           });
         });
       });
     });
   });
-});
 
 router.post('/like-post', function (req, res) {
   // Purpose: This route is responsible for updating the likes count of a particular blog post based on post ID.

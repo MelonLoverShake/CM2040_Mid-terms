@@ -24,8 +24,6 @@ There's only one possible username that able to access the author endpoints.
 Upon first login, only the first account registered are able to access the author endpoints as my application is made with the assumption there's only one author.
 
 After registering the first account, You are able to login using either the **username** or **email**, alongside with your password to access the author endpoints.
-
-Please access the application though the author endpoints before attempting to access the reader's as to allow the session to be created.
 ======================================================================================
 My application can be run with  ```npm install```, ```npm run build-db```, and ```npm run start``` . 
 ======================================================================================
