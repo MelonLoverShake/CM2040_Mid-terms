@@ -20,12 +20,10 @@
 
   <form action="/like-post" method="POST">
     <input type="hidden" name="postLikeId" value="<%=post.id%>">
-    <input type="hidden" name="userid" value="<%= user.id %>">
     <button type="submit">Like</button>
   </form>
   <form action="/dislike-post" method="POST">
     <input type="hidden" name="postdisLikeId" value="<%=post.id%>">
-    <input type="hidden" name="userrid" value="<%= user.id %>">
     <button type="submit">Dislike</button>
   </form>
 
