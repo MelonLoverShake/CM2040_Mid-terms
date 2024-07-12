@@ -12,6 +12,32 @@ router.use(session({ secret: 'secret-key', resave: false, saveUninitialized: tru
 const bcrypt = require('bcrypt');
 const rateLimit = require('express-rate-limit');
 
+function formatDateForSQLite(date) {
+  // Purpose: This function takes a JavaScript Date object and formats it into a string
+  // that can be easily inserted into an SQLite database with a time zone adjustment to GMT+8.
+  // Inputs: A JavaScript Date object representing the date and time to be formatted.
+  // Outputs: A string in the format "YYYY-MM-DD HH:MM:SS" that can be used to insert
+  // the date and time into an SQLite database.
+
+  if (!(date instanceof Date)) {
+      throw new Error("Invalid Date object");
+  }
+
+  // Adjust the date for GMT+8
+  const gmtPlus8 = new Date(date.getTime() + 8 * 60 * 60 * 1000);
+
+  const year = gmtPlus8.getUTCFullYear();
+  const month = String(gmtPlus8.getUTCMonth() + 1).padStart(2, '0');
+  const day = String(gmtPlus8.getUTCDate()).padStart(2, '0');
+  const hours = String(gmtPlus8.getUTCHours()).padStart(2, '0');
+  const minutes = String(gmtPlus8.getUTCMinutes()).padStart(2, '0');
+  const seconds = String(gmtPlus8.getUTCSeconds()).padStart(2, '0');
+
+  const formattedDate = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  return formattedDate;
+}
+
+
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 4, // limit each IP to 4 requests per windowMs
@@ -355,12 +381,13 @@ router.post('/add-comments', function(req, res) {
   // - req.body.comment - The text content of the comment.
   // - req.body.commenter - The username of the user making the comment.
 
-  const AddComments = 'INSERT INTO Comments (postId, text, comment_user) VALUES (?, ?, ?)';
+  const AddComments = 'INSERT INTO Comments (postId, text, createdAt, comment_user) VALUES (?, ?, ?, ?)';
   const postId = req.body.pstid;
   const text = req.body.comment;
   const userName = req.body.commenter;
+  const adjusteddate = formatDateForSQLite(new Date());
 
-  db.all(AddComments, [postId, text, userName], (err, result) => {
+  db.all(AddComments, [postId, text,adjusteddate, userName], (err, result) => {
     if (err) {
       // If there is an error adding the comment, log the error and send a 500 Internal Server Error response with an error message.
       console.error('Error adding comment:', err);
