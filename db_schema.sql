@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS Comments (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   postId INTEGER,
   text TEXT NOT NULL,
-  createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+  createdAt DATETIME,
   comment_user TEXT NOT NULL,
   FOREIGN KEY (postId) REFERENCES Posts (id) ON DELETE CASCADE
 );
@@ -49,6 +49,9 @@ CREATE TABLE IF NOT EXISTS Settings (
 
 INSERT INTO Settings (title, subtitle, author) VALUES
 ('Ruby-Blog', 'The Process of Being a Role-player', 'RubyTheGriffin');
+
+INSERT INTO Users (username, password, email) VALUES
+('Ruby14', '$2b$10$DTRI1.nU4qN4WhJhQxyrBO4AKQs4b0qkfsNhThwiPvlKIRMrIAVuy', 'ruby14@gmail.com');
 
 
 COMMIT;

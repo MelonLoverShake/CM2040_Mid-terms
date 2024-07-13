@@ -21,11 +21,11 @@ My application has an authorization feature securing the author endpoints.
 
 There's only one possible username that able to access the author endpoints.
 
-Upon first login, only the first account registered are able to access the author endpoints as my application is made with the assumption there's only one author.
-
-After registering the first account, You are able to login using either the **username** or **email**, alongside with your password to access the author endpoints.
+The Account as follows:
+Username: ruby14
+password: 91054732
 ======================================================================================
-My application can be run with  ```npm install```, ```npm run build-db```, and ```npm run start``` . 
+My application can be run with  ```npm install```, ```npm run build-db-win```, and ```npm run start``` . 
 ======================================================================================
 Name: Tan Yee Chong 
 Module: CM2040
